@@ -4,8 +4,14 @@
 stunde=$(date +%H)      # um zu wissen, ob die Beleuchtung ausgeschaltet werden muss
 datum=$(date +%R-%d/%m/%y)
 
+# Variablen für Datenbank Zugriff speichern
+dbserver=192.168.24.2
+dbuser=wetter
+dbpassword=wetter#2013
+dbused=wetterstation
+
 # Check, ob Datenbank erreichbar ist! Wenn nicht, ausgabe am Display
-if ! /opt/wetter/wetter_mysql/dbcheck.sh; then
+if ! "/usr/bin/mysql" -h $dbserver -u $dbuser -p$dbpassword -e 'use wetterstation'"; then
 lcd2=" DB nicht erreichbar"
 lcd3="  letzter Check:"
 lcd4="  ${datum}"
