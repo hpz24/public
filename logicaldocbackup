@@ -1,6 +1,6 @@
 #!/bin/bash
 #LogicalDoc-Backup
-#START
+#START BACKUP
 TIME=`date +%b-%d-%y`
 FILENAMEDOC=docs.tar.gz
 FILENAMEINDEX=index.tar.gz
@@ -15,4 +15,9 @@ tar -cpzf $DESDIR/$FILENAME $DESDIR/$FILENAMEDOC $DESDIR/$FILENAMEINDEX
 
 rm $DESDIR/$FILENAMEDOC
 rm $DESDIR/$FILENAMEINDEX
-#END
+
+# delete files, older than 10 days (https://stackoverflow.com/questions/13489398/delete-files-older-than-10-days-using-shell-script-in-unix)
+find $DESDIR/*.tar.gz -mtime +1 -type f -delete
+
+#END BACKUP
+
